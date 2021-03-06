@@ -27,7 +27,7 @@ module.exports = app =>{
       app.post("/api/notes", (req, res) => {
 
         const newNote = req.body;
-    
+  
         console.log("\n\nPOST request - New Note : " + JSON.stringify(newNote));
     
         let data = JSON.parse(fs.readFileSync("./Develop/db/db.json", "utf8"));
@@ -40,6 +40,22 @@ module.exports = app =>{
         console.log("Added Note");
     
         res.json(data);
+      });
+
+      app.delete(`/api/notes/:id`, (reqrequest, res) => {
+
+        let noteId = req.params.id.toString();
+    
+        console.log(`\nDELETE note request for noteId: ${noteId}`);
+    
+
+        let data = JSON.parse(fs.readFileSync("./Develop/db/db.json", "utf8"));
+        console.log(data);
+
+        const newData = data.filter((note) => note.id.toString() !== noteId);
+        console.log(newData)
+
+        res.json(newData);
       });
 
 }
