@@ -18,7 +18,6 @@ module.exports = app =>{
 
     // View Notes
     app.get("/api/notes", (req, res) => {
-        console.log("Getting Notes");
         let data = JSON.parse(fs.readFileSync("./Develop/db/db.json", "utf8"));
         res.json(data);
       
@@ -30,14 +29,9 @@ module.exports = app =>{
         console.log("\n\nPOST request - New Note : " + JSON.stringify(newNote));
     
         let data = JSON.parse(fs.readFileSync("./Develop/db/db.json", "utf8"));
-        console.log(data);
-
         data.push(newNote);
     
         fs.writeFileSync("./Develop/db/db.json", JSON.stringify(data));
-    
-        console.log("Added Note");
-    
         res.json(data);
       });
 
@@ -45,10 +39,7 @@ module.exports = app =>{
 
         let noteId = req.params.id.toString();
     
-        console.log(`\nDELETE note request for noteId: ${noteId}`);
-    
         let data = JSON.parse(fs.readFileSync("./Develop/db/db.json", "utf8"));
-        console.log(data);
 
         const newData = data.filter((note) => note.id.toString() !== noteId);
         fs.writeFileSync("./Develop/db/db.json", JSON.stringify(newData));
