@@ -10,4 +10,4 @@ This Project is designed to allow a user to add/view/ and delete notes.
 
 
 ## Notes Page
-![Project Img](Develop/public/assets/images/readMe.png)
+![Project Img](Develop/public/assets/images/readME.png)
